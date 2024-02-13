@@ -1,0 +1,2 @@
+This directory is responsible for the code related to the application code 
+Files for configuring the server shouldn't be placed in this directory

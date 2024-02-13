@@ -1,0 +1,1 @@
+this folder responsible for framework code (tools that the application will use ) and it's name reflects the namespace when coding

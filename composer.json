@@ -1,0 +1,18 @@
+{
+    "name": "fady3/phpiggy",
+    "description": "A PHP application to learn php",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Fady Samir",
+            "email": "karshfish35@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4":{
+            "Framework\\":"src/Framework",
+            "App\\":"sec/App"
+        }
+    }
+}
