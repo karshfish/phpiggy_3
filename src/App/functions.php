@@ -1,4 +1,5 @@
 <?php
+/*the only purpose of this function is to out the array in a pre format*/
 declare (strict_types=1);
 function dd(mixed $value)
 {
@@ -6,4 +7,4 @@ function dd(mixed $value)
     var_dump($value);
     echo "</pre>";
     die();
-}
+}       
