@@ -1,9 +1,22 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Controllers;
-class HomeController{
+
+use Framework\TemplateEngine as TE;
+use App\Config\Paths;
+
+class HomeController
+{
+    private TE $view;
+    public function __construct()
+    {
+        $this->view = new TE(Paths::VIEW);
+    }
     public function home()
     {
-        echo"home page";
+        $MyName = 'Fady';
+        $this->view->render("/index.php", ['Name' => $MyName]);
     }
 }
