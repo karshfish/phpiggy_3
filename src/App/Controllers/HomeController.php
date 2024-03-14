@@ -19,9 +19,4 @@ class HomeController
         $MyName = 'Fady';
         $this->view->render("/index.php", ['Name' => $MyName]);
     }
-    public function about()
-    {
-
-        $this->view->render('/about.php', ['github' => 'https://github.com/karshfish']);
-    }
 }
