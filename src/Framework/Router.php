@@ -34,7 +34,7 @@ class Router
                 !preg_match("#^{$route['path']}$#", $path) ||
                 $route['method'] !== $method
             ) {
-                echo "Route NOT found";
+
                 continue;
             }
             [$class, $function] = $route['controller'];

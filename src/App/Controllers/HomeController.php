@@ -17,6 +17,6 @@ class HomeController
     public function home()
     {
         $MyName = 'Fady';
-        $this->view->render("/index.php", ['Name' => $MyName]);
+        echo $this->view->render("/index.php", ['Name' => $MyName]);
     }
 }

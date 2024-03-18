@@ -16,6 +16,6 @@ class AboutController
     }
     public function About()
     {
-        $this->view->render('about.php', ['github' => 'https://github.com/karshfish']);
+        echo $this->view->render('about.php', ['github' => 'https://github.com/karshfish']);
     }
 }
