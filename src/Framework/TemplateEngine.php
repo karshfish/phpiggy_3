@@ -14,6 +14,10 @@ class TemplateEngine
                                                                 the array data is to pass data into the template page  */
     {
         extract($data, EXTR_SKIP);  //Extract array data into variable that we can use separately
-        include "{$this->basePath}/{$template}"; // including the full path of the template page
+        include $this->resolve($template); // including the full path of the template page
+    }
+    public function resolve(string $path)
+    {
+        return "{$this->basePath}/{$path}";
     }
 }
