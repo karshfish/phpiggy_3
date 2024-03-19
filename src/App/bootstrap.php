@@ -4,10 +4,10 @@ declare(strict_types=1);
 require __DIR__ . "/../../vendor/autoload.php";
 
 use Framework\App; //importing Framework
-use App\Controllers\{HomeController, AboutController}; //importing HomeController
+use function App\Config\registerRoutes;
+
 $app = new App();
-$app->get('/', [HomeController::class, 'home']); //Intializing  index page
-$app->get('/about', [AboutController::class, 'about']); //intializing about page
+registerRoutes($app);
 // dd($app);
 
 return $app;
