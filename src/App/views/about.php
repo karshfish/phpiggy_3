@@ -13,7 +13,7 @@ include $this->resolve("partials/_header.php");
 
     <!-- Escaping Data -->
     <p>Escaping Data: </p>
-    <?php echo e($dangerousData); ?>
+    <?php echo e($dangerousData); ?> <!--escaping the java script command-->
 </section>
 <!-- End Main Content Area -->
 <?php

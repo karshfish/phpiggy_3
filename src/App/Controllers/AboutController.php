@@ -19,7 +19,7 @@ class AboutController
         echo $this->view->render('about.php', [
             "title" => 'About',
             'github' => 'https://github.com/karshfish',
-            'dangerousData' => '<script>alert(123)</script>'
+            'dangerousData' => '<script>alert(123)</script>' //sneaky sneaky js 
         ]);
     }
 }

@@ -9,7 +9,7 @@ function dd(mixed $value)
     echo "</pre>";
     die();
 }
-function e(mixed $value): string
+function e(mixed $value): string    //sugar function for escapng the dangerous charachters 
 {
     return htmlspecialchars((string) $value);
 }
