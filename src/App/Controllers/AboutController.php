@@ -9,10 +9,9 @@ use App\Config\Paths as PATH;
 
 class AboutController
 {
-    private TE $view;
-    public function __construct()
+
+    public function __construct(private TE $view)
     {
-        $this->view = new TE(PATH::VIEW);
     }
     public function About()
     {

@@ -25,7 +25,7 @@ class Router
         $path = preg_replace('#[/]{2,}#', '/', $path);
         return $path;
     }
-    public function dispatch(string $path, string $method)
+    public function dispatch(string $path, string $method, Container $container = null)
     {
         $path = $this->normalizePath($path);
         $method = strtoupper($method);
@@ -38,7 +38,11 @@ class Router
                 continue;
             }
             [$class, $function] = $route['controller'];
-            $InstanceOflClass = new $class;
+            if ($container) {
+                $InstanceOflClass = $container->resolve($class);
+            } else {
+                $InstanceOflClass = new $class;
+            }
             $InstanceOflClass->$function();
             exit();
         }

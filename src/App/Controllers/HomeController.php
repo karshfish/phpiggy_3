@@ -9,10 +9,9 @@ use App\Config\Paths;
 
 class HomeController
 {
-    private TE $view;
-    public function __construct()
+
+    public function __construct(private TE $view)
     {
-        $this->view = new TE(Paths::VIEW);
     }
     public function home()
     {
