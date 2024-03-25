@@ -15,33 +15,33 @@ class Container
     {
         $this->definintions = [...$this->definintions, ...$newDefinitions];
     }
-    public function resolve(string $className)
+    public function resolve(string $className) //to validate the class and creatt it
     {
-        $reflectionClass = new ReflectionClass($className);
-        if (!$reflectionClass->isInstantiable()) {
+        $reflectionClass = new ReflectionClass($className); //creating a reflection to know the class and see if it exists or not
+        if (!$reflectionClass->isInstantiable()) { //to see if the class is instantiable or not
             throw new CE("Class {$className} is not instantiable");
         }
-        $constructor = $reflectionClass->getConstructor();
+        $constructor = $reflectionClass->getConstructor(); //to get the constructor of the method and return as an object
         if (!$constructor) {
             return new $className;
         }
-        $params = $constructor->getParameters();
+        $params = $constructor->getParameters(); //to know the necasserry parameters of the class by knowing the paramters in the constructor
         if (count($params) === 0) {
             return new $className;
         }
-        $dependencies = [];
-        foreach ($params as $param) {
+        $dependencies = []; //to store all the dependencies the needs to be instantiated
+        foreach ($params as $param) { //Validating all dependencies
             $name = $param->getName();
             $type = $param->getType();
-            if (!$type) {
+            if (!$type) { //Forcing tpe hinting to aoid confusion
                 throw new CE("Failed to resolve class {$className} because paramater {$name} is missing a type hint");
             }
-            if (!$type instanceof ReflectionNamedType || $type->isBuiltin()) {
+            if (!$type instanceof ReflectionNamedType || $type->isBuiltin()) { //if the paramter in the constructor isn't a namedtyped we throw an error or if it is a builtin type
                 throw new CE("Failed to resolve this class {$className} paramter {$name} is invalid");
             }
-            $dependencies[] = $this->get($type->getName());
+            $dependencies[] = $this->get($type->getName()); //Invoking the factory function for each dependancy 
         }
-        return $reflectionClass->newInstanceArgs($dependencies);
+        return $reflectionClass->newInstanceArgs($dependencies); //Creating the unstance od the object needed
     }
     public function get(string $id)
     {
