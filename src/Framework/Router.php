@@ -7,6 +7,7 @@ namespace Framework;
 class Router
 {
     private array $routes = [];
+    private array $Middlewares = [];
     // Responsible for adding new routes.
     public function add(string $method, string $path, array $controller)
     {
@@ -46,5 +47,9 @@ class Router
             $InstanceOflClass->$function();
             exit();
         }
+    }
+    public function addMiddleware(string $middleware)
+    {
+        $this->Middlewares[] = $middleware;
     }
 }
