@@ -44,8 +44,13 @@ class Router
             } else {
                 $InstanceOflClass = new $class;
             }
-            $InstanceOflClass->$function();
-            exit();
+            $action = fn () => $InstanceOflClass->$function();
+            foreach ($this->Middlewares as $middleware) {
+                $middlewareInstance = new $middleware;
+                $action = fn () => $middlewareInstance->process($action);
+            }
+            $action();
+            return;
         }
     }
     public function addMiddleware(string $middleware)

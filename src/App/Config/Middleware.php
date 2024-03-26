@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Config;
 
 use Framework\App;
-use App\Middlware\TemplateDataMiddleware;
+use App\Middleware\TemplateDataMiddleware;
 
 function registerMiddleware(App $app)
 {
-    $app->addMiddleware(TemplateDataMiddleware::class);
+    $app->addMiddleware(TemplateDataMiddleware::class); //Addin the first Middleware
 }

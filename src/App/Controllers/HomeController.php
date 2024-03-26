@@ -18,7 +18,7 @@ class HomeController
         $MyName = 'Fady';
         echo $this->view->render("/index.php", [
             'Name' => $MyName,
-            "title" => 'Home'
+
         ]);
     }
 }

@@ -2,8 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Middlware;
+namespace App\Middleware;
 
-class TemplateDataMiddleware
+use Framework\Contracts\MiddlewareInterface;
+
+class TemplateDataMiddleware implements MiddlewareInterface
 {
+    public function process(callable $next)
+    {
+        echo "Template Data Middleware";
+    }
 }
