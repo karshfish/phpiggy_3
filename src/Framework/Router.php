@@ -46,7 +46,8 @@ class Router
             }
             $action = fn () => $InstanceOflClass->$function();
             foreach ($this->Middlewares as $middleware) {
-                $middlewareInstance = new $middleware;
+                $middlewareInstance = $container ? $container->resolve($middleware) :
+                    new $middleware;
                 $action = fn () => $middlewareInstance->process($action);
             }
             $action();
