@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Framework;
 
+// use App\Middleware\TemplateDataMiddleware;
+
 class Router
 {
     private array $routes = [];
