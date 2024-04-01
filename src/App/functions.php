@@ -1,5 +1,6 @@
 <?php
-/*the only purpose of this function is to out the array in a pre format*/
+/*the only purpose of this function is to out the array in a pre format
+and then stop the script*/
 
 declare(strict_types=1);
 function dd(mixed $value)

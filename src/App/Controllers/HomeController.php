@@ -12,6 +12,7 @@ class HomeController
 
     public function __construct(private TE $view)
     {
+        // var_dump($this->view);
     }
     public function home()
     {

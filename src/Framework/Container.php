@@ -42,7 +42,7 @@ class Container
             }
             $dependencies[] = $this->get($type->getName()); //Invoking the factory function for each dependancy 
         }
-        return $reflectionClass->newInstanceArgs($dependencies); //Creating the unstance od the object needed
+        return $reflectionClass->newInstanceArgs($dependencies); //Creating the instance of the object needed
     }
     public function get(string $id)
     {
