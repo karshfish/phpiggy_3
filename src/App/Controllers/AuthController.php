@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use Framework\TemplateEngine as TE;
+use App\Services\ValidatorService as VS;
 
 class AuthController
 {
-    public function __construct(private TE $view)
+    public function __construct(private TE $view, private VS $validatorService)
     {
     }
     public function registrationView()
@@ -20,6 +21,6 @@ class AuthController
     }
     public function register()
     {
-        dd($_POST);
+        $this->validatorService->validateRegister($_POST);
     }
 }
