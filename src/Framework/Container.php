@@ -44,7 +44,7 @@ class Container
         }
         return $reflectionClass->newInstanceArgs($dependencies); //Creating the instance of the object needed
     }
-    public function get(string $id)
+    public function get(string $id) //this function returns the instances of the definetions if exists and cheks that every instance is being create one time only
     {
         if (!array_key_exists($id, $this->definintions)) {
             throw new CE("Class not available");

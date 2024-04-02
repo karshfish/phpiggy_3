@@ -12,4 +12,5 @@ function registerRoutes(App $app)
     $app->get('/', [HomeController::class, 'home']); //Intializing  index page
     $app->get('/about', [AboutController::class, 'about']); //intializing about page
     $app->get('/register', [AuthController::class, 'registrationView']); //intializing registration page
+    $app->post('/register', [AuthController::class, 'register']);
 }
