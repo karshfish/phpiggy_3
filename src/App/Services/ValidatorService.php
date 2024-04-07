@@ -13,7 +13,7 @@ class ValidatorService
     public function __construct()
     {
         $this->validator = new Validator;
-        $this ->validator->add('Required', new RequiredRule)
+        $this->validator->addRules('Required', new RequiredRule);
     }
 
     public function validateRegister(array $formData)
