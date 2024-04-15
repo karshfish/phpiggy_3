@@ -14,3 +14,9 @@ function e(mixed $value): string    //sugar function for escapng the dangerous c
 {
     return htmlspecialchars((string) $value);
 }
+function redirectTo(string $path)
+{
+    header("Location: {$path}");
+    http_response_code(302);
+    exit;
+}
