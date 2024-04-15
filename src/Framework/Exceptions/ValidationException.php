@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Framework\Exception;
+namespace Framework\Exceptions;
 
 use RuntimeException;
 
