@@ -1,0 +1,1 @@
+this folder responsible for application code and it's name reflects the namespace when coding

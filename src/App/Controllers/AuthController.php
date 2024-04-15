@@ -1,0 +1,26 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Controllers;
+
+use Framework\TemplateEngine as TE;
+use App\Services\ValidatorService as VS;
+
+class AuthController
+{
+    public function __construct(private TE $view, private VS $validatorService)
+    {
+    }
+    public function registrationView()
+    {
+        $this->view->render('registration.php', [
+            'title' => 'Sign up'
+
+        ]);
+    }
+    public function register()
+    {
+        $this->validatorService->validateRegister($_POST);
+    }
+}
