@@ -11,6 +11,6 @@ class SessionMiddleware implements MiddlewareInterface
     public function process(callable $next)
     {
         session_start();
-        $next;
+        $next();
     }
 }
