@@ -15,6 +15,7 @@ class  FlashMiddleware implements MiddlewareInterface
     public function process(callable $next)
     {
         $this->view->addGlobal('errors', $_SESSION['errors'] ?? []);
+        unset($_SESSION['errors']);
         $next();
     }
 }
