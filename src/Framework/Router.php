@@ -21,11 +21,11 @@ class Router
         ];
     }
     //Normalizing the route to insure stability
-    private function normalizePath(string $path): string
+    private function normalizePath(string $path): string //using regular expression to normalize all paths
     {
-        $path = trim($path, '/');
-        $path = "/{$path}/";
-        $path = preg_replace('#[/]{2,}#', '/', $path);
+        $path = trim($path, '/'); //removing all repeated "/" from the path
+        $path = "/{$path}/"; // making sure that the starts and ends with "/"s
+        $path = preg_replace('#[/]{2,}#', '/', $path); //using this expression to remove all repeated "/"
         return $path;
     }
     public function dispatch(string $path, string $method, Container $container = null)
