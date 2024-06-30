@@ -8,7 +8,8 @@ use Framework\Validator;
 use Framework\Rules\{
     RequiredRule,
     EmailRule,
-    MinRule
+    MinRule,
+    InRule
 };
 
 class ValidatorService
@@ -20,6 +21,7 @@ class ValidatorService
         $this->validator->addRules('Required', new RequiredRule);
         $this->validator->addRules('Email', new EmailRule);
         $this->validator->addRules('min', new MinRule);
+        $this->validator->addRules('In', new InRule);
     }
 
     public function validateRegister(array $formData)
@@ -27,7 +29,7 @@ class ValidatorService
         $this->validator->validate($formData, [
             'e-mail' => ['Required', 'Email'],
             'Age' => ['Required', 'min:18'],
-            'Country' => ['Required'],
+            'Country' => ['Required', "In:USA,Canada,Mexico"],
             'SocialMediaURL' => ['Required'],
             'pwd' => ['Required'],
             'conf_pwd' => ['Required'],
