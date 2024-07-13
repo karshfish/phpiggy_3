@@ -21,7 +21,7 @@ class ValidationExceptionMiddleware implements MiddlewareInterface
                 array_flip($excludedFormData)
             );
             $_SESSION['errors'] = $e->errors; //storing the errors of the exception in thus variable
-            $_SESSION['oldFormdata'] = $_POST;
+            $_SESSION['oldFormdata'] = $formattedFormData;
             $referer = $_SERVER['HTTP_REFERER'];
             redirectTo($referer);
         }
