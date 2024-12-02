@@ -4,6 +4,7 @@ declare(strict_types=1);
 require __DIR__ . "/../../vendor/autoload.php";
 
 use Framework\App; //importing Framework
+use Dotenv\Dotenv;
 use function App\Config\{registerRoutes, registerMiddleware};
 use App\Config\Paths as PATH;
 
