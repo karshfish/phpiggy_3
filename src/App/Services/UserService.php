@@ -6,7 +6,7 @@ namespace App\Services;
 
 use Framework\Database;
 
-class UserServices
+class UserService
 {
     public function __construct(private Database $db)
     {

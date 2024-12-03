@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use Framework\TemplateEngine as TE;
-use App\Services\ValidatorService as VS;
+use App\Services\{ValidatorService as VS, UserService as US};
 
 class AuthController
 {
-    public function __construct(private TE $view, private VS $validatorService)
-    {
+    public function __construct(
+        private TE $view,
+        private VS $validatorService,
+        private US $userservice
+    ) {
     }
     public function registrationView()
     {
