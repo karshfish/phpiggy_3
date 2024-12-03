@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use Framework\TemplateEngine as TE;
+use Framework\{TemplateEngine as TE, Container, Database as DB};
 use App\Config\Paths as PATH;
-use App\Services\ValidatorService as VS;
-use Framework\Database as DB;
+use App\Services\{ValidatorService as VS, UserService as US};
+
 
 return [
     TE::class => fn () => new TE(PATH::VIEW),
@@ -19,5 +19,9 @@ return [
         ],
         $_ENV['DB_USER'],
         $_ENV['DB_PASS'],
-    )
+    ),
+    US::class => function (Container $container) {
+        $db = $container->get(DB::class);
+        return new US($db);
+    }
 ];
