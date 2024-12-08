@@ -11,4 +11,9 @@ class UserService
     public function __construct(private Database $db)
     {
     }
+    public function isEmailtaken(string $email)
+    {
+        $this->db->query("
+        SELECT COUNT(*) FROM users WHERE email= :email");
+    }
 }
