@@ -15,8 +15,8 @@ class UserService
     public function isEmailtaken(string $email)
     {
         $emailCount = $this->db->query(
-            "
-        SELECT COUNT(*) FROM users WHERE email= :email",
+            '
+        SELECT COUNT(*) FROM users WHERE email= :email',
             [
                 'email' => $email
             ]
