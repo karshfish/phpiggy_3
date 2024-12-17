@@ -26,9 +26,14 @@ class Database
             die("Unable to Connect to database ");
         }
     }
-    public function query(string $query, array $params = [])
+    public function query(string $query, array $params = []): Database
     {
         $this->stmt = $this->connection->prepare($query);
         $this->stmt->execute($params);
+        return $this;
+    }
+    public function count()
+    {
+        return $this->stmt->fetchColumn();
     }
 }

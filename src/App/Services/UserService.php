@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use Framework\Database;
+use Framework\Exceptions\ValidationException as VE;
 
 class UserService
 {
@@ -13,12 +14,15 @@ class UserService
     }
     public function isEmailtaken(string $email)
     {
-        $this->db->query(
+        $emailCount = $this->db->query(
             "
         SELECT COUNT(*) FROM users WHERE email= :email",
             [
                 'email' => $email
             ]
-        );
+        )->count();
+        if ($emailCount > 0) {
+            throw new VE(['email' => 'email taken']);
+        }
     }
 }
