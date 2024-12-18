@@ -13,9 +13,9 @@ return [
     DB::class => fn () => new DB(
         $_ENV['DB_DRIVER'],
         [
-            $_ENV['DB_HOST'],
-            $_ENV['DB_PORT'],
-            $_ENV['DB_NAME']
+            'host' =>  $_ENV['DB_HOST'],
+            'port' => $_ENV['DB_PORT'],
+            'dbname' => $_ENV['DB_NAME']
         ],
         $_ENV['DB_USER'],
         $_ENV['DB_PASS'],
