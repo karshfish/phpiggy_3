@@ -18,7 +18,7 @@ class Database
             arg_separator: ";"
         );
         $dsn = "{$driver}:{$config}";
-        echo $dsn;
+
 
 
         try {

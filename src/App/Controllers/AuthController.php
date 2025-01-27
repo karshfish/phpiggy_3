@@ -13,8 +13,7 @@ class AuthController
         private TE $view,
         private VS $validatorService,
         private US $userservice
-    ) {
-    }
+    ) {}
     public function registrationView()
     {
         $this->view->render('registration.php', [
@@ -26,6 +25,7 @@ class AuthController
     {
         $this->validatorService->validateRegister($_POST);
         $this->userservice->isEmailtaken($_POST['e-mail']);
+        $this->userservice->createUser($_POST);
         redirectTo('/');
     }
 }
