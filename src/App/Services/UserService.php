@@ -24,7 +24,7 @@ class UserService
     }
     public function createUser(array $userinfo)
     {
-        $hashed_pwd = password_hash(password: $userinfo['pwd'],  algo: PASSWORD_BCRYPT);
+        $hashed_pwd = password_hash(password: $userinfo['pwd'],  algo: PASSWORD_BCRYPT, options: ['cost' => 12]);
         $this->db->query(
 
             'INSERT INTO users (email, password, country,age, social_media_url)
