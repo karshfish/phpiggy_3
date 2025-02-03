@@ -25,5 +25,6 @@ class LoginController
     {
         $this->validateService->validateLogin($_POST);
         $this->userServices->login($_POST);
+        redirectTo('/');
     }
 }

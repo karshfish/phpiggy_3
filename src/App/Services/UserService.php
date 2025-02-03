@@ -40,5 +40,16 @@ class UserService
             ]
         );
     }
-    public function login(array $userinfo) {}
+    public function login(array $userInfo)
+    {
+        $user = $this->db->query(
+            'SELECT * FROM users WHERE email= :email',
+            ['email' => $userInfo['email']]
+        )->find();
+        $passwordMatch = password_verify($userInfo['password'], $user['password'] ?? '');
+        if (!$user || !$passwordMatch) {
+            throw new VE(['password' => 'Invalid Credentials']);
+        }
+        $_SESSION['user'] = $user['id'];
+    }
 }
