@@ -19,7 +19,7 @@ class UserService
             ]
         )->count();
         if ($emailCount > 0) {
-            throw new VE(['email' => 'email taken']);
+            throw new VE(['e-mail' => ['email taken']]);
         }
     }
     public function createUser(array $userinfo)
@@ -48,7 +48,7 @@ class UserService
         )->find();
         $passwordMatch = password_verify($userInfo['password'], $user['password'] ?? '');
         if (!$user || !$passwordMatch) {
-            throw new VE(['password' => 'Invalid Credentials']);
+            throw new VE(['password' => ["Invalid Credentials"]]);
         }
         $_SESSION['user'] = $user['id'];
     }
