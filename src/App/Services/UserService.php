@@ -46,10 +46,11 @@ class UserService
             'SELECT * FROM users WHERE email= :email',
             ['email' => $userInfo['email']]
         )->find();
-        $passwordMatch = password_verify($userInfo['password'], $user['password'] ?? '');
+        $passwordMatch = password_verify($userInfo['password'], $user['password'] ?? ''); //to verify the hashed password and delivering empty string if no password is there
         if (!$user || !$passwordMatch) {
             throw new VE(['password' => ["Invalid Credentials"]]);
         }
-        $_SESSION['user'] = $user['id'];
+        session_regenerate_id(); //regenerating session ID to prevent it from being hacked
+        $_SESSION['user'] = $user['id']; // Delivering the user ID only because the data changes constantly  
     }
 }
