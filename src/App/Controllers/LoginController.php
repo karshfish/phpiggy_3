@@ -27,4 +27,9 @@ class LoginController
         $this->userServices->login($_POST);
         redirectTo('/');
     }
+    public function logout()
+    {
+        $this->userServices->logout();
+        redirectTo('/login');
+    }
 }

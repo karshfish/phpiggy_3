@@ -53,4 +53,9 @@ class UserService
         session_regenerate_id(); //regenerating session ID to prevent it from being hacked
         $_SESSION['user'] = $user['id']; // Delivering the user ID only because the data changes constantly  
     }
+    public function logout()
+    {
+        unset($_SESSION['user']);
+        session_regenerate_id();
+    }
 }
