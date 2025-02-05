@@ -17,7 +17,8 @@ class Router
         $this->routes[] = [
             'path' => $path,
             'method' => strtoupper($method),
-            'controller' => $controller
+            'controller' => $controller,
+            'middleware' => []
         ];
     }
     //Normalizing the route to insure stability
@@ -46,11 +47,12 @@ class Router
             } else {
                 $InstanceOflClass = new $class;
             }
-            $action = fn () => $InstanceOflClass->$function();
-            foreach ($this->Middlewares as $middleware) {
+            $action = fn() => $InstanceOflClass->$function();
+            $allMiddleware = [...$route['middleware'], ...$this->Middlewares];
+            foreach ($allMiddleware as $middleware) {
                 $middlewareInstance = $container ? $container->resolve($middleware) :
                     new $middleware;
-                $action = fn () => $middlewareInstance->process($action);
+                $action = fn() => $middlewareInstance->process($action);
             }
             $action();
             return;
@@ -59,5 +61,10 @@ class Router
     public function addMiddleware(string $middleware)
     {
         $this->Middlewares[] = $middleware;
+    }
+    public function addRouteMiddleware(string $middleware)
+    {
+        $lastRouteKey = array_key_last($this->routes);
+        $this->routes[$lastRouteKey]['middleware'][] = $middleware;
     }
 }
