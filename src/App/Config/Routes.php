@@ -10,9 +10,9 @@ use App\Middleware\{AuthRequiredMiddleware, GuestOnlyMiddleware};
 
 function registerRoutes(App $app)
 {
-    $app->get('/', [HomeController::class, 'home'])->addRouteMiddleware(AuthRequiredMiddleware::class); //Intializing  index page
-    $app->get('/about', [AboutController::class, 'about']); //intializing about page
-    $app->get('/register', [AuthController::class, 'registrationView'])->addRouteMiddleware(GuestOnlyMiddleware::class); //intializing registration page
+    $app->get('/', [HomeController::class, 'home'])->addRouteMiddleware(AuthRequiredMiddleware::class); // index page
+    $app->get('/about', [AboutController::class, 'about']); // about page
+    $app->get('/register', [AuthController::class, 'registrationView'])->addRouteMiddleware(GuestOnlyMiddleware::class); // registration page
     $app->post('/register', [AuthController::class, 'register'])->addRouteMiddleware(GuestOnlyMiddleware::class);
     $app->get('/login', [LoginController::class, 'viewLogin'])->addRouteMiddleware(GuestOnlyMiddleware::class); //Viewing Login page
     $app->post('/login', [LoginController::class, 'login'])->addRouteMiddleware(GuestOnlyMiddleware::class);

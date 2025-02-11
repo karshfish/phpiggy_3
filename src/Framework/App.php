@@ -10,7 +10,7 @@ class App
     private Router $router;
     private Container $container;
 
-    public function __construct(string $containerDefinitionsPath = NULL) //Making the first thing to do when creating the App class is to search for the container definiions while making it optional 
+    public function __construct(string $containerDefinitionsPath = NULL) //Making the first thing to do when creating the App class is to search for the container definitions while making it optional 
     {
         $this->router = new Router();
         $this->container = new Container();
