@@ -12,7 +12,7 @@ class AuthController
     public function __construct(
         private TE $view,
         private VS $validatorService,
-        private US $userservice
+        private US $userService
     ) {}
     public function registrationView()
     {
@@ -24,8 +24,8 @@ class AuthController
     public function register()
     {
         $this->validatorService->validateRegister($_POST);
-        $this->userservice->isEmailtaken($_POST['e-mail']);
-        $this->userservice->createUser($_POST);
+        $this->userService->isEmailTaken($_POST['e-mail']);
+        $this->userService->createUser($_POST);
         redirectTo('/');
     }
 }
