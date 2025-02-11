@@ -39,6 +39,8 @@ class UserService
 
             ]
         );
+        session_regenerate_id();
+        $_SESSION['user'] = $this->db->id();
     }
     public function login(array $userInfo)
     {
