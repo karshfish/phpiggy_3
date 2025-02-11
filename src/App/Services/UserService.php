@@ -10,7 +10,7 @@ use Framework\Exceptions\ValidationException as VE;
 class UserService
 {
     public function __construct(private Database $db) {}
-    public function isEmailtaken(string $email)
+    public function isEmailTaken(string $email)
     {
         $emailCount = $this->db->query(
             'SELECT COUNT(*) FROM users WHERE email= :email',
@@ -22,19 +22,19 @@ class UserService
             throw new VE(['e-mail' => ['email taken']]);
         }
     }
-    public function createUser(array $userinfo)
+    public function createUser(array $userInfo)
     {
-        $hashed_pwd = password_hash(password: $userinfo['pwd'],  algo: PASSWORD_BCRYPT, options: ['cost' => 12]);
+        $hashed_pwd = password_hash(password: $userInfo['pwd'],  algo: PASSWORD_BCRYPT, options: ['cost' => 12]);
         $this->db->query(
 
             'INSERT INTO users (email, password, country,age, social_media_url)
         VALUES (:email, :password, :country, :age, :social_media_url)',
             [
-                'email' => $userinfo['e-mail'],
+                'email' => $userInfo['e-mail'],
                 'password' => $hashed_pwd,
-                'country' => $userinfo['Country'],
-                'age' => $userinfo['Age'],
-                "social_media_url" => $userinfo['SocialMediaURL']
+                'country' => $userInfo['Country'],
+                'age' => $userInfo['Age'],
+                "social_media_url" => $userInfo['SocialMediaURL']
 
 
             ]
