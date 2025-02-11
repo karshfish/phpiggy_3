@@ -4,10 +4,13 @@ include $this->resolve("partials/_header.php");
 <section class="max-w-2xl mx-auto mt-12 p-4 bg-white shadow-md border border-gray-200 rounded">
 
     <form method="POST" class="grid grid-cols-1 gap-6">
+        <?php include $this->resolve("partials/_csrf.php"); ?>
         <!-- Email -->
         <label class="block">
             <span class="text-gray-700">Email address</span>
-            <input value="<?php echo e($oldFormdata['e-mail'] ?? ''); ?>" name="e-mail" type="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="john@example.com" />
+            <input value="<?php echo e($oldFormdata['e-mail'] ?? ''); ?>" name="e-mail" type="email"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                placeholder="john@example.com" />
             <?php
             if (array_key_exists('e-mail', $errors)) : ?>
                 <div class="bg-gray-100 mt-2 p-2 text-red-500"><?php echo e($errors['e-mail'][0]) ?></div>
@@ -16,7 +19,9 @@ include $this->resolve("partials/_header.php");
         <!-- Age -->
         <label class="block">
             <span class="text-gray-700">Age</span>
-            <input value="<?php echo e($oldFormdata['Age'] ?? ''); ?>" name="Age" type="number" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="" />
+            <input value="<?php echo e($oldFormdata['Age'] ?? ''); ?>" name="Age" type="number"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                placeholder="" />
             <?php
             if (array_key_exists('Age', $errors)) : ?>
                 <div class="bg-gray-100 mt-2 p-2 text-red-500"><?php echo e($errors['Age'][0]) ?></div>
@@ -25,7 +30,8 @@ include $this->resolve("partials/_header.php");
         <!-- Country -->
         <label class="block">
             <span class="text-gray-700">Country</span>
-            <select name="Country" class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            <select name="Country"
+                class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 <option value="USA">USA</option>
                 <option value="Canada" <?php if (array_key_exists('Country', $oldFormdata)) {
                                             echo $oldFormdata['Country'] === 'Canada' ? 'selected' : '';
@@ -43,7 +49,9 @@ include $this->resolve("partials/_header.php");
         <!-- Social Media URL -->
         <label class="block">
             <span class="text-gray-700">Social Media URL</span>
-            <input value="<?php echo e($oldFormdata['SocialMediaURL'] ?? ''); ?>" name="SocialMediaURL" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="" />
+            <input value="<?php echo e($oldFormdata['SocialMediaURL'] ?? ''); ?>" name="SocialMediaURL" type="text"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                placeholder="" />
             <?php
             if (array_key_exists('SocialMediaURL', $errors)) : ?>
                 <div class="bg-gray-100 mt-2 p-2 text-red-500"><?php echo e($errors['SocialMediaURL'][0]) ?></div>
@@ -52,7 +60,9 @@ include $this->resolve("partials/_header.php");
         <!-- Password -->
         <label class="block">
             <span class="text-gray-700">Password</span>
-            <input name="pwd" type="password" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="" />
+            <input name="pwd" type="password"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                placeholder="" />
             <?php
             if (array_key_exists('pwd', $errors)) : ?>
                 <div class="bg-gray-100 mt-2 p-2 text-red-500"><?php echo e($errors['pwd'][0]) ?></div>
@@ -61,7 +71,9 @@ include $this->resolve("partials/_header.php");
         <!-- Confirm Password -->
         <label class="block">
             <span class="text-gray-700">Confirm Password</span>
-            <input name="conf_pwd" type="password" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="" />
+            <input name="conf_pwd" type="password"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                placeholder="" />
             <?php
             if (array_key_exists('conf_pwd', $errors)) : ?>
                 <div class="bg-gray-100 mt-2 p-2 text-red-500"><?php echo e($errors['conf_pwd'][0]) ?></div>
@@ -72,7 +84,9 @@ include $this->resolve("partials/_header.php");
             <div class="mt-2">
                 <div>
                     <label class="inline-flex items-center">
-                        <input <?php echo $oldFormdata['tos'] ?? false ? 'checked' : ''; ?> name="tos" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" type="checkbox" />
+                        <input <?php echo $oldFormdata['tos'] ?? false ? 'checked' : ''; ?> name="tos"
+                            class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
+                            type="checkbox" />
                         <span class="ml-2">I accept the terms of service.</span>
                         <?php
                         if (array_key_exists('tos', $errors)) : ?>
