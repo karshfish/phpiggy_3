@@ -48,4 +48,12 @@ class ValidatorService
             'password' => ['Required']
         ]);
     }
+    public function validateCreate(array $formData)
+    {
+        $this->validator->validate($formData, [
+            'description' => ['Required'],
+            'amount' => ['Required'],
+            'date' => ['Required']
+        ]);
+    }
 }
