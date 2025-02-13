@@ -11,7 +11,8 @@ use Framework\Rules\{
     MinRule,
     InRule,
     URLRule,
-    MatchRule
+    MatchRule,
+    LengthMaxRule
 };
 
 class ValidatorService
@@ -26,6 +27,7 @@ class ValidatorService
         $this->validator->addRules('In', new InRule);
         $this->validator->addRules('URL', new URLRule);
         $this->validator->addRules('Match', new MatchRule);
+        $this->validator->addRules('LengthMax', new LengthMaxRule);
     }
 
     public function validateRegister(array $formData)
@@ -51,7 +53,7 @@ class ValidatorService
     public function validateCreate(array $formData)
     {
         $this->validator->validate($formData, [
-            'description' => ['Required'],
+            'description' => ['Required', 'LengthMax:255'],
             'amount' => ['Required'],
             'date' => ['Required']
         ]);
