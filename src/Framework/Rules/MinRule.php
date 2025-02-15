@@ -9,12 +9,12 @@ use InvalidArgumentException as IAE;
 
 class MinRule implements RuleInterface
 {
-    public function validate(array $data, string $field, array $parms): bool
+    public function validate(array $data, string $field, array $params): bool
     {
-        if (empty($parms[0])) {
+        if (empty($params[0])) {
             throw new IAE("Minimum length not specified");
         }
-        $length = $parms[0];
+        $length = $params[0];
         return $data[$field] >= $length;
     }
     public function getMessage(array $data, string $field, array $params): string

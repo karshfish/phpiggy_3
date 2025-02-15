@@ -9,10 +9,10 @@ use Reflector;
 
 class MatchRule implements RuleInterface
 {
-    public function validate(array $data, string $field, array $parms): bool
+    public function validate(array $data, string $field, array $params): bool
     {
         $fieldOne = $data[$field];
-        $fieldTwo = $data[$parms[0]];
+        $fieldTwo = $data[$params[0]];
         return $fieldOne === $fieldTwo;
     }
     public function getMessage(array $data, string $field, array $params): string

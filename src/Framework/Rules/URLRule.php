@@ -8,7 +8,7 @@ use Framework\Contracts\RuleInterface;
 
 class URLRule implements RuleInterface
 {
-    public function validate(array $data, string $field, array $parms): bool
+    public function validate(array $data, string $field, array $params): bool
     {
         return (bool) filter_var($data[$field], FILTER_VALIDATE_URL);
     }
