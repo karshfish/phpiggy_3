@@ -20,9 +20,9 @@ class HomeController
     public function home()
     {
         $transactions = $this->ts->findTransactions();
-        $MyName = 'Fady';
+
         echo $this->view->render("/index.php", [
-            'Name' => $MyName,
+
             'transactions' => $transactions
 
         ]);
