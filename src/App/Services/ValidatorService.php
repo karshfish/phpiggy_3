@@ -13,7 +13,8 @@ use Framework\Rules\{
     URLRule,
     MatchRule,
     LengthMaxRule,
-    NumericRule
+    NumericRule,
+    DateRule
 };
 
 class ValidatorService
@@ -30,6 +31,7 @@ class ValidatorService
         $this->validator->addRules('Match', new MatchRule);
         $this->validator->addRules('LengthMax', new LengthMaxRule);
         $this->validator->addRules('isNumeric', new NumericRule);
+        $this->validator->addRules('Date', new DateRule);
     }
 
     public function validateRegister(array $formData)
@@ -57,7 +59,7 @@ class ValidatorService
         $this->validator->validate($formData, [
             'description' => ['Required', 'LengthMax:255'],
             'amount' => ['Required', 'isNumeric'],
-            'date' => ['Required']
+            'date' => ['Required', 'Date']
         ]);
     }
 }

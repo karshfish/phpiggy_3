@@ -1,5 +1,5 @@
 <?php
-
+#this file is an Interface to create custom rule that will be applied to our field upon submission 
 declare(strict_types=1);
 
 namespace Framework\Contracts;
