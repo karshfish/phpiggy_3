@@ -59,7 +59,7 @@ class ValidatorService
         $this->validator->validate($formData, [
             'description' => ['Required', 'LengthMax:255'],
             'amount' => ['Required', 'isNumeric'],
-            'date' => ['Required', 'Date']
+            'date' => ['Required', 'Date:Y-m-d']
         ]);
     }
 }
