@@ -24,6 +24,7 @@ class TransactionsController
     {
         $this->validatorService->validateCreate($_POST);
         $this->ts->create($_POST);
+        redirectTo('/');
     }
     public function deleteTransaction() {}
 }
