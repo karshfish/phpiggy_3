@@ -19,7 +19,12 @@ class HomeController
     }
     public function home()
     {
-        $transactions = $this->ts->findTransactions();
+        $page = $_GET['p'] ?? 1;
+        $page = (int)$page;
+        $length = $_GET['l'] ?? 5;
+        $length = (int)$length;
+        $offset = ($page - 1) * $length;
+        $transactions = $this->ts->findTransactions($length, $offset);
 
         echo $this->view->render("/index.php", [
 
