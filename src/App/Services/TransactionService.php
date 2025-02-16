@@ -23,7 +23,7 @@ class TransactionService
             'date' => $formatDate
         ]);
     }
-    public function findTransactions(int $length, int $offset)
+    public function findTransactions(int $length, int $offset): array
     {
 
         $searchTerm = addcslashes($_GET['s'] ?? '', '%_');
