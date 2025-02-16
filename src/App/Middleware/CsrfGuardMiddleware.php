@@ -17,9 +17,9 @@ class CsrfGuardMiddleware implements MiddlewareInterface
             return; //This is an important step bcs we need the method to continue  working early to prevent additional outside code from running
         }
         if ($_SESSION['token'] !== $_POST['token']) {
-            redirectTo('/');
+            redirectTo('/'); //TO DO is to do a custom exception for the csrf token
         }
-        unset($_SESSION['token']);
+        unset($_SESSION['token']); //Preventing an attacker to use the same token more than one time 
         $next();
     }
 }
