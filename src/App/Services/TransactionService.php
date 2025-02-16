@@ -26,7 +26,7 @@ class TransactionService
     public function findTransactions()
     {
         $transactions = $this->db->query(
-            "SELECT * FROM transactions WHERE user_id= :user_id",
+            "SELECT *, DATE_FORMAT(date,%Y %m %D) FROM transactions WHERE user_id= :user_id",
             ['user_id' => $_SESSION['user']]
         )->findAll();
         return $transactions;
