@@ -48,4 +48,13 @@ class TransactionService
         )->count();
         return [$transactions, $transactionsCount];
     }
+    public function getUserTransaction(string $id)
+    {
+        return $this->db->query("SELECT *, DATE_FORMAT(date,'%Y-%m-%d') as formatted_date FROM transactions
+         WHERE user_id=:user_id AND
+         id=:id ", [
+            'user_id' => $_SESSION['user'],
+            'id' => $id
+        ])->find();
+    }
 }

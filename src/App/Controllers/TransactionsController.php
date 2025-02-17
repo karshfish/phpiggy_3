@@ -28,7 +28,15 @@ class TransactionsController
     }
     public function editTransactionView(array $params)
     {
-        dd($params);
+        $transaction = $this->ts->getUserTransaction($params['transaction']);
+        $this->view->render(
+            "transactions/edit.php",
+            ['transaction' => $transaction]
+        );
+    }
+    public function editTransaction()
+    {
+        $this->validatorService->validateCreate($_POST);
     }
     public function deleteTransaction() {}
 }
