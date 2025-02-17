@@ -57,4 +57,16 @@ class TransactionService
             'id' => $id
         ])->find();
     }
+    public function editTransaction(array $formData, string $id)
+    {
+        $formatDate = "{$formData['date']} 00:00:00";
+        $this->db->query("UPDATE transactions SET description = :description, amount = :amount, date= :date
+        WHERE user_id=:user_id AND id=:id", [
+            'user_id' => $_SESSION['user'],
+            'description' => $formData['description'],
+            'amount' => $formData['amount'],
+            'date' => $formatDate,
+            'id' => $id
+        ]);
+    }
 }

@@ -29,14 +29,23 @@ class TransactionsController
     public function editTransactionView(array $params)
     {
         $transaction = $this->ts->getUserTransaction($params['transaction']);
+        if (!$transaction) {
+            redirectTo('/');
+        }
         $this->view->render(
             "transactions/edit.php",
             ['transaction' => $transaction]
         );
     }
-    public function editTransaction()
+    public function editTransaction($params)
     {
-        $this->validatorService->validateCreate($_POST);
+        $transaction = $this->ts->getUserTransaction($params['transaction']);
+        if (!$transaction) {
+            redirectTo('/');
+        }
+        $this->validatorService->validateCreate($_POST); //Creation validation and edit validation are the same
+        $this->ts->editTransaction($_POST, $params['transaction']);
+        redirectTo($_SERVER['HTTP_REFERER']);
     }
     public function deleteTransaction() {}
 }
