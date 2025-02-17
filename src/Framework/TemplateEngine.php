@@ -8,8 +8,7 @@ class TemplateEngine
 {
     private array $globalTemplateData = [];
     public function __construct(private string $basePath) //this property is for identifying the template tha we are gonna use
-    {
-    }
+    {}
     public function render(string $template, array $data = []) /*template variable identifies what page the controller will use for the url path.
                                                                 the array data is to pass data into the template page  */
     {
