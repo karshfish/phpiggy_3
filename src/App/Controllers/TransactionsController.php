@@ -49,6 +49,11 @@ class TransactionsController
     }
     public function deleteTransaction($params)
     {
-        dd($params);
+        $transaction = $this->ts->getUserTransaction($params['transaction']);
+        if (!$transaction) {
+            redirectTo('/');
+        }
+        $this->ts->delete($transaction['id']);
+        redirectTo('/');
     }
 }
