@@ -13,12 +13,15 @@ class Router
     // Responsible for adding new routes.
     public function add(string $method, string $path, array $controller)
     {
+
         $path = $this->normalizePath($path);
+        $regexPath = preg_replace('#{[^/]+}#', '([^/]+)', $path);
         $this->routes[] = [
             'path' => $path,
             'method' => strtoupper($method),
             'controller' => $controller,
-            'middleware' => []
+            'middleware' => [],
+            'regexPath' => $regexPath
         ];
     }
     //Normalizing the route to insure stability
@@ -35,19 +38,23 @@ class Router
         $method = strtoupper($method);
         foreach ($this->routes as $route) {
             if (
-                !preg_match("#^{$route['path']}$#", $path) ||
+                !preg_match("#^{$route['regexPath']}$#", $path, $paramValues) ||
                 $route['method'] !== $method
             ) {
 
                 continue;
             }
+            array_shift($paramValues);
+            preg_match_all('#{([^/]+)}#', $route['path'], $paramKeys);
+            $paramKeys = $paramKeys[1];
+            $params = array_combine($paramKeys, $paramValues);
             [$class, $function] = $route['controller'];
             if ($container) {
                 $InstanceOflClass = $container->resolve($class);
             } else {
                 $InstanceOflClass = new $class;
             }
-            $action = fn() => $InstanceOflClass->$function();
+            $action = fn() => $InstanceOflClass->$function($params);
             $allMiddleware = [...$route['middleware'], ...$this->Middlewares];
             foreach ($allMiddleware as $middleware) {
                 $middlewareInstance = $container ? $container->resolve($middleware) :
