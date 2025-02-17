@@ -21,4 +21,5 @@ function registerRoutes(App $app)
     $app->post('/createTransaction', [TransactionsController::class, 'createTransaction'])->addRouteMiddleware(AuthRequiredMiddleware::class);
     $app->get('/transaction/{transaction}', [TransactionsController::class, 'editTransactionView']);
     $app->post('/transaction/{transaction}', [TransactionsController::class, 'editTransaction']);
+    $app->delete('/transaction/{transaction}', [TransactionsController::class, 'deleteTransaction']);
 }

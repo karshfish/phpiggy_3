@@ -47,5 +47,8 @@ class TransactionsController
         $this->ts->editTransaction($_POST, $params['transaction']);
         redirectTo($_SERVER['HTTP_REFERER']);
     }
-    public function deleteTransaction() {}
+    public function deleteTransaction($params)
+    {
+        dd($params);
+    }
 }
