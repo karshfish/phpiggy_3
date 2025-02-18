@@ -12,7 +12,7 @@ class ReceiptController
     public function __construct(
         private TemplateEngine $view,
         private TransactionService $transactionService,
-        private RS $ReceiptService
+        private RS $receiptService
     ) {}
 
     public function uploadView(array $params)
@@ -33,7 +33,8 @@ class ReceiptController
         if (!$transaction) {
             redirectTo("/");
         }
-        $this->ReceiptService->validateUpload($_FILES);
+        $receiptFile = $_FILES['receipt'] ?? NULL;
+        $this->receiptService->validateFile($receiptFile);
 
         redirectTo("/");
     }

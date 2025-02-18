@@ -12,7 +12,7 @@ class ReceiptService
     public function __construct(
         private Database $db
     ) {}
-    public function validateUpload(?array $file)
+    public function validateFile(?array $file)
     {
         dd($file);
     }
