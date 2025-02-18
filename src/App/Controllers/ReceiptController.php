@@ -32,6 +32,7 @@ class ReceiptController
         if (!$transaction) {
             redirectTo("/");
         }
+        dd($_FILES);
 
         redirectTo("/");
     }
