@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Config;
 
 use Framework\App;
-use App\Controllers\{HomeController, AboutController, AuthController, LoginController, TransactionsController}; //importing HomeController
+use App\Controllers\{HomeController, AboutController, AuthController, LoginController, TransactionsController, ReceiptController}; //importing HomeController
 use App\Middleware\{AuthRequiredMiddleware, GuestOnlyMiddleware};
 
 function registerRoutes(App $app)
@@ -22,4 +22,6 @@ function registerRoutes(App $app)
     $app->get('/transaction/{transaction}', [TransactionsController::class, 'editTransactionView']);
     $app->post('/transaction/{transaction}', [TransactionsController::class, 'editTransaction']);
     $app->delete('/transaction/{transaction}', [TransactionsController::class, 'deleteTransaction']);
+    $app->get('/transaction/{transaction}/receipt', [ReceiptController::class, 'uploadView']);
+    $app->post('/transaction/{transaction}/receipt', [ReceiptController::class, 'upload']);
 }
