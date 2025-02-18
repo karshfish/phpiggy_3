@@ -30,6 +30,11 @@ class ReceiptService
         if (!in_array($fileMimeType, $allowedMimeTypes)) {
             throw new VE(['receipt' => ['Wrong file type']]);
         }
-        dd($file);
+    }
+    public function upload(array $file)
+    {
+        $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+        $newFilename = bin2hex(random_bytes(20)) . "." . $extension;
+        dd($newFilename);
     }
 }
