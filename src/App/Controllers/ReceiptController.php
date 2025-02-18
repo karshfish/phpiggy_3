@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use Framework\TemplateEngine;
-use App\Services\{TransactionService};
+use App\Services\{TransactionService, ReceiptService as RS};
 
 class ReceiptController
 {
     public function __construct(
         private TemplateEngine $view,
-        private TransactionService $transactionService
+        private TransactionService $transactionService,
+        private RS $ReceiptService
     ) {}
 
     public function uploadView(array $params)
@@ -32,7 +33,7 @@ class ReceiptController
         if (!$transaction) {
             redirectTo("/");
         }
-        dd($_FILES);
+        $this->ReceiptService->validateUpload($_FILES);
 
         redirectTo("/");
     }
