@@ -39,4 +39,6 @@ class ReceiptController
 
         redirectTo("/");
     }
+    public function download() {}
+    public function delete() {}
 }

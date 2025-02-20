@@ -19,9 +19,11 @@ function registerRoutes(App $app)
     $app->get('/logout', [LoginController::class, 'logout'])->addRouteMiddleware(AuthRequiredMiddleware::class);
     $app->get('/createTransaction', [TransactionsController::class, 'createView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
     $app->post('/createTransaction', [TransactionsController::class, 'createTransaction'])->addRouteMiddleware(AuthRequiredMiddleware::class);
-    $app->get('/transaction/{transaction}', [TransactionsController::class, 'editTransactionView']);
-    $app->post('/transaction/{transaction}', [TransactionsController::class, 'editTransaction']);
-    $app->delete('/transaction/{transaction}', [TransactionsController::class, 'deleteTransaction']);
-    $app->get('/transaction/{transaction}/receipt', [ReceiptController::class, 'uploadView']);
-    $app->post('/transaction/{transaction}/receipt', [ReceiptController::class, 'upload']);
+    $app->get('/transaction/{transaction}', [TransactionsController::class, 'editTransactionView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+    $app->post('/transaction/{transaction}', [TransactionsController::class, 'editTransaction'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+    $app->delete('/transaction/{transaction}', [TransactionsController::class, 'deleteTransaction'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+    $app->get('/transaction/{transaction}/receipt', [ReceiptController::class, 'uploadView'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+    $app->post('/transaction/{transaction}/receipt', [ReceiptController::class, 'upload'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+    $app->get('/transaction/{transaction}/receipt/{receipt}', [ReceiptController::class, 'download'])->addRouteMiddleware(AuthRequiredMiddleware::class);
+    $app->delete('/transaction/{transaction}/receipt/{receipt}', [ReceiptController::class, 'delete'])->addRouteMiddleware(AuthRequiredMiddleware::class);
 }
