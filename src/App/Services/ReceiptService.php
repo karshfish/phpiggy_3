@@ -40,7 +40,7 @@ class ReceiptService
         if (!move_uploaded_file($file['tmp_name'], $uploadPath)) {
             throw new VE(['receipt' => ['Failed to move uploaded file']]);
         }
-        $this->db->query("INSERT INTO receipts (transaction_id, original_filename, storage_filename, media_type) VALUES
+        $this->db->query("INSERT INTO transaction_receipts (transaction_id, original_filename, storage_filename, media_type) VALUES
          (:transaction_id, :original_filename, :storage_filename, :media_type)", [
             'transaction_id' => $transactionId,
             'original_filename' => $file['name'],
