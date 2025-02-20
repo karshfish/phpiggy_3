@@ -64,4 +64,14 @@ class ReceiptService
         header("Content-Disposition: inline; filename={$receipt['original_filename']}");
         readfile($filePath);
     }
+    public function delete(array $receipt)
+    {
+        $filePath = Paths::STORAGE . "/" . $receipt['storage_filename'];
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+        $this->db->query("DELETE FROM transaction_receipts WHERE id=:id", [
+            'id' => $receipt['id']
+        ]);
+    }
 }
