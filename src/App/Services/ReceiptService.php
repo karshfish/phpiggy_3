@@ -6,11 +6,12 @@ namespace App\Services;
 
 use Framework\Database;
 use Framework\Exceptions\ValidationException as VE;
+use App\Config\Paths;
 
 class ReceiptService
 {
     public function __construct(
-        private Database $db
+        private Database $db,
     ) {}
     public function validateFile(?array $file)
     {
@@ -35,6 +36,9 @@ class ReceiptService
     {
         $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
         $newFilename = bin2hex(random_bytes(20)) . "." . $extension;
-        dd($newFilename);
+        $uploadPath = Paths::STORAGE . "/" . $newFilename;
+        if (!move_uploaded_file($file['tmp_name'], $uploadPath)) {
+            throw new VE(['receipt' => ['Failed to move uploaded file']]);
+        }
     }
 }
