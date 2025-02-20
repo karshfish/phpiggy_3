@@ -32,7 +32,7 @@ class ReceiptService
             throw new VE(['receipt' => ['Wrong file type']]);
         }
     }
-    public function upload(array $file)
+    public function upload(array $file, int $transactionId)
     {
         $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
         $newFilename = bin2hex(random_bytes(20)) . "." . $extension;
@@ -40,5 +40,11 @@ class ReceiptService
         if (!move_uploaded_file($file['tmp_name'], $uploadPath)) {
             throw new VE(['receipt' => ['Failed to move uploaded file']]);
         }
+        $this->db->query("INSERT INTO receipts (transaction_id, original_filename, storage_filename, media_type) VALUES (:transaction_id, :original_filename, :storage_filename, :media_type)", [
+            'transaction_id' => $transactionId,
+            'original_filename' => $file['name'],
+            'storage_filename' => $newFilename,
+            'media_type' => $file['type']
+        ]);
     }
 }
