@@ -54,4 +54,14 @@ class ReceiptService
             'id' => $receiptId
         ])->find();
     }
+    public function read(array $receipt)
+    {
+        $filePath = Paths::STORAGE . "/" . $receipt['storage_filename'];
+        if (!file_exists($filePath)) {
+            redirectTO('/');
+        }
+        header("Content-Type: {$receipt['media_type']}");
+        header("Content-Disposition: inline; filename={$receipt['original_filename']}");
+        readfile($filePath);
+    }
 }

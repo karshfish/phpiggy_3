@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use Framework\TemplateEngine;
-use App\Services\{TransactionService, ReceiptService as RS};
+use App\Services\{TransactionService, ReceiptService as RS, ReceiptService};
 
 class ReceiptController
 {
@@ -43,16 +43,17 @@ class ReceiptController
     {
         $transaction = $this->transactionService->getUserTransaction($params['transaction']);
 
-        if (!$transaction) {
+        if (empty($transaction)) {
             redirectTo("/");
         }
         $receipt = $this->receiptService->getReceipt($params['receipt']);
-        if (!empty($receipt)) {
+        if (empty($receipt)) {
             redirectTo('/');
         }
         if ($receipt['transaction_id'] !== $transaction['id']) {
             redirectTo('/');
         }
+        $this->receiptService->read($receipt);
     }
     public function delete(array $params) {}
 }
