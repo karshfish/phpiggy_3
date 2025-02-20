@@ -70,6 +70,7 @@ include $this->resolve("partials/_header.php");
                                     </svg>
                                 </a>
                                 <form action="/transaction/<?php echo e($transaction['id']); ?>/receipt/<?php echo e($receipt['id']); ?>" method="POST">
+                                    <?php include $this->resolve("partials/_csrf.php"); ?>
                                     <input type="hidden" name="_METHOD" value="DELETE" />
                                     <button type="submit" class="absolute -top-1 -right-1">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="rgb(239 68 68)" viewBox="0 0 24 24"
