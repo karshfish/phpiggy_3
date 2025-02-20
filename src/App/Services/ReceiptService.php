@@ -48,4 +48,10 @@ class ReceiptService
             'media_type' => $file['type']
         ]);
     }
+    public function getReceipt(string $receiptId): mixed
+    {
+        return $this->db->query("SELECT * FROM transaction_receipts WHERE id=:id", [
+            'id' => $receiptId
+        ])->find();
+    }
 }
