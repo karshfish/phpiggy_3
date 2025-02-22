@@ -82,7 +82,7 @@ class Router
     }
     public function dispatchNotFound(?Container $container)
     {
-        [$class, $function] = $this->errorHandlers;
+        [$class, $function] = $this->errorHandlers[0];
         $controllerInstancec = $container ? $container->resolve($class) : new $class;
         $action = fn() => $controllerInstancec->$function();
         foreach ($this->Middlewares as $middleware) {
