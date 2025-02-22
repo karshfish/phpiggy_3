@@ -48,4 +48,8 @@ class App
     {
         $this->router->addRouteMiddleware($middleware);
     }
+    public function addErrorHandler($controller)
+    {
+        $this->router->addErrorHandler($controller);
+    }
 }
