@@ -34,7 +34,7 @@ class Container
         foreach ($params as $param) { //Validating all dependencies
             $name = $param->getName();
             $type = $param->getType();
-            if (!$type) { //Forcing tpe hinting to aoid confusion
+            if (!$type) { //Forcing type hinting to avoid confusion
                 throw new CE("Failed to resolve class {$className} because paramater {$name} is missing a type hint");
             }
             if (!$type instanceof ReflectionNamedType || $type->isBuiltin()) { //if the paramter in the constructor isn't a namedtyped we throw an error or if it is a builtin type
